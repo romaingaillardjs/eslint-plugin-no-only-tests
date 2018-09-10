@@ -2,29 +2,29 @@ var rules = require('./index').rules;
 RuleTester = require('eslint').RuleTester;
 var ruleTester = new RuleTester();
 
-ruleTester.run('no-only-tests', rules['no-only-tests'], {
+ruleTester.run('no-skip-tests', rules['no-skip-tests'], {
   valid: [
     {
       code: 'describe("Some describe block", function() {});'
     }, {
       code: 'it("Some assertion", function() {});'
     }, {
-      code: 'xit.only("Some assertion", function() {});'
+      code: 'xit.skip("Some assertion", function() {});'
     }, {
-      code: 'xdescribe.only("Some describe block", function() {});'
+      code: 'xdescribe.skip("Some describe block", function() {});'
     }
   ],
 
   invalid: [
     {
-      code: 'describe.only("Some describe block", function() {});',
+      code: 'describe.skip("Some describe block", function() {});',
       errors: [{
-        message: 'describe.only not permitted'
+        message: 'describe.skip not permitted'
       }]
     }, {
-      code: 'it.only("Some assertion", function() {});',
+      code: 'it.skip("Some assertion", function() {});',
       errors: [{
-        message: 'it.only not permitted'
+        message: 'it.skip not permitted'
       }]
     }
   ]
