@@ -8,8 +8,8 @@ module.exports = {
 
     return {
       Identifier: function(node) {
-        if (node.name === 'only' && regex.test(node.parent.object.name)) {
-          context.report(node, node.parent.object.name + '.only not permitted');
+        if (node.name === 'skip' && regex.test(node.parent.object.name)) {
+          context.report(node, node.parent.object.name + '.skip not permitted');
         }
       }
     }
